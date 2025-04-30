@@ -1,0 +1,21 @@
+[project]
+name = "repl-nix-workspace"
+version = "0.1.0"
+description = "Dashboard interativo com Streamlit, análise com pandas e conexão com PostgreSQL"
+authors = [
+    { name = "Maryucha M Mariani", email = "maryuchammariani@gmail.com" }
+]
+requires-python = ">=3.11"
+
+dependencies = [
+    "streamlit>=1.30.0",
+    "pandas",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "plotly",
+    "python-dateutil",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_studio
+    environment:
+      POSTGRES_DB: studio_finance
+      POSTGRES_USER: studio
+      POSTGRES_PASSWORD: studio123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

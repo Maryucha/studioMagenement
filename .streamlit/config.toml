@@ -1,0 +1,15 @@
+[server]
+headless = true
+address = "0.0.0.0"           # Permite acesso externo (essencial em Docker/GCP)
+port = 5000                   # Pode ser sobrescrito via env: STREAMLIT_SERVER_PORT
+enableCORS = false            # Pode ser true se tiver frontend separado
+enableXsrfProtection = true   # Proteção contra CSRF
+maxUploadSize = 100           # MB — ajuste se seu app usar arquivos
+cookieSecret = "troque_essa_string_por_uma_secreta"
+
+[theme]
+primaryColor = "#4A90E2"              # Azul institucional leve
+backgroundColor = "#ffffff"           # Branco
+secondaryBackgroundColor = "#f7f7f7"  # Cinza claro
+textColor = "#262730"                 # Quase preto
+font = "sans serif"
