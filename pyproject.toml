@@ -1,5 +1,5 @@
 [project]
-name = "repl-nix-workspace"
+name = "studioMagenement"
 version = "0.1.0"
 description = "Dashboard interativo com Streamlit, análise com pandas e conexão com PostgreSQL"
 authors = [
@@ -19,3 +19,5 @@ dependencies = [
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+[tool.setuptools]
+packages = ["infra", "pages", "models", "services", "repositories"]

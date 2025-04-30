@@ -12,7 +12,7 @@ Permite análise de dados e integração com banco PostgreSQL.
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/studioMagenement.git
+git clone https://github.com/maryucha/studioMagenement.git
 cd studioMagenement
 ```
 2. Crie e ative o ambiente virtual:
