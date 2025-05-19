@@ -3,25 +3,36 @@
 Módulo de infraestrutura responsável pela conexão com o banco PostgreSQL (via Neon)
 """
 
+import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import streamlit as st
 
 def get_connection():
     """
-    Retorna uma nova conexão com o banco de dados PostgreSQL (Neon via st.secrets).
-
-    Returns:
-        psycopg2.extensions.connection: Conexão ativa com o banco de dados.
+    Retorna uma nova conexão com o banco de dados PostgreSQL (compatível com Streamlit Cloud e Neon).
+    Prioriza st.secrets['database'], mas permite fallback para variáveis de ambiente.
     """
-    return psycopg2.connect(
-        dbname=st.secrets["postgres"]["database"],
-        user=st.secrets["postgres"]["user"],
-        password=st.secrets["postgres"]["password"],
-        host=st.secrets["postgres"]["host"],
-        port=st.secrets["postgres"]["port"],
-        sslmode=st.secrets["postgres"]["sslmode"]
-    )
+    if "database" in st.secrets:
+        db_config = st.secrets["database"]
+        return psycopg2.connect(
+            dbname=db_config["dbname"],
+            user=db_config["user"],
+            password=db_config["password"],
+            host=db_config["host"],
+            port=db_config.get("port", 5432),
+            sslmode=db_config.get("sslmode", "require")
+        )
+    else:
+        # Fallback para variáveis de ambiente (útil para testes locais)
+        return psycopg2.connect(
+            dbname=os.environ.get("DB_NAME", "studio_finance"),
+            user=os.environ.get("DB_USER", "studio"),
+            password=os.environ.get("DB_PASSWORD", "studio123"),
+            host=os.environ.get("DB_HOST", "localhost"),
+            port=os.environ.get("DB_PORT", 5432),
+            sslmode=os.environ.get("DB_SSLMODE", "require")
+        )
 
 def inicializar_banco():
     """
