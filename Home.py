@@ -20,6 +20,10 @@ from utils.formatters import formatar_data_hora_pt, converter_para_euro
 # -------------------------------
 # Configuração da Página
 # -------------------------------
+
+from infra.database import inicializar_banco
+inicializar_banco()
+
 st.set_page_config(
     page_title="Studio Finance",
     page_icon="💇",

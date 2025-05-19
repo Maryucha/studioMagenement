@@ -44,9 +44,15 @@ def gerar_dataframe_base() -> pd.DataFrame:
         "Valor (R$)": servico_precos.get(a.servico_id, 0)
     } for a in realizados])
 
-    df["Ano"] = df["Data e Hora"].dt.year
-    df["Mês"] = df["Data e Hora"].dt.month
-    df["Dia"] = df["Data e Hora"].dt.day
+    # Garante que as colunas existam mesmo se o DataFrame estiver vazio
+    if df.empty:
+        df = pd.DataFrame(columns=[
+            "Cliente", "Serviço", "Profissional", "Data e Hora", "Valor (R$)", "Ano", "Mês", "Dia"
+        ])
+    else:
+        df["Ano"] = df["Data e Hora"].dt.year
+        df["Mês"] = df["Data e Hora"].dt.month
+        df["Dia"] = df["Data e Hora"].dt.day
 
     return df
 

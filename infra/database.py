@@ -1,23 +1,26 @@
 # infra/database.py
 """
-Módulo de infraestrutura responsável pela conexão com o banco PostgreSQL
+Módulo de infraestrutura responsável pela conexão com o banco PostgreSQL (via Neon)
 """
+
 import psycopg2
 from psycopg2.extras import RealDictCursor
+import streamlit as st
 
 def get_connection():
     """
-    Retorna uma nova conexão com o banco de dados PostgreSQL.
+    Retorna uma nova conexão com o banco de dados PostgreSQL (Neon via st.secrets).
 
     Returns:
         psycopg2.extensions.connection: Conexão ativa com o banco de dados.
     """
     return psycopg2.connect(
-        dbname="studio_finance",
-        user="studio",
-        password="studio123",
-        host="localhost",
-        port=5432
+        dbname=st.secrets["postgres"]["database"],
+        user=st.secrets["postgres"]["user"],
+        password=st.secrets["postgres"]["password"],
+        host=st.secrets["postgres"]["host"],
+        port=st.secrets["postgres"]["port"],
+        sslmode=st.secrets["postgres"]["sslmode"]
     )
 
 def inicializar_banco():
@@ -74,13 +77,6 @@ def inicializar_banco():
     conn.commit()
     cursor.close()
     conn.close()
-    return psycopg2.connect(
-        dbname="studio_finance",
-        user="studio",
-        password="studio123",
-        host="localhost",
-        port=5432
-    )
 
 # Inicializar automaticamente se rodar o arquivo
 if __name__ == "__main__":
