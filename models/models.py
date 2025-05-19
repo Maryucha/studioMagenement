@@ -3,7 +3,6 @@
 Módulo de infraestrutura responsável pela conexão com o banco PostgreSQL
 """
 import psycopg2
-from psycopg2.extras import RealDictCursor
 
 def get_connection():
     """

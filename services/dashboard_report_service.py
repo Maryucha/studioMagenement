@@ -7,15 +7,13 @@ Autor: Maryucha M. Mariani
 Data: 2025-04-29
 """
 
-from datetime import datetime
-from typing import Optional, Tuple, Dict, List
+from typing import Tuple, Dict
 import pandas as pd
 
 from repositories.cliente_repo import listar_clientes
 from repositories.servico_repo import listar_servicos
 from repositories.agendamento_repo import listar_agendamentos
 from repositories.custo_repo import listar_custos
-from utils.formatters import converter_para_euro
 
 
 def gerar_dataframe_base() -> pd.DataFrame:

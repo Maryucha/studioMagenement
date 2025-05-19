@@ -19,5 +19,11 @@ dependencies = [
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
 [tool.setuptools]
-packages = ["infra", "pages", "models", "services", "repositories"]
+packages = ["infra", "pages", "models", "services", "repositories", "scripts"]
+
+[project.scripts]
+studio-dev = "scripts.run:dev"      # Roda com Docker local
+studio-neon = "scripts.run:neon"    # Roda com Neon
+studio-init = "scripts.run:init"    # Inicializa banco

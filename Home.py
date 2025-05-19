@@ -8,7 +8,6 @@ Data: 2025-04-30
 """
 
 import streamlit as st
-import pandas as pd
 from datetime import datetime, timedelta
 import random
 
